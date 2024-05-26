@@ -166,6 +166,26 @@ const keys = {
 
 decreaseTimer()
 
+function restartGame() {
+  // Reset player and enemy health
+  player.health = 100;
+  enemy.health = 100;
+
+  // Reset player and enemy positions
+  player.position = { x: 0, y: 0 };
+  enemy.position = { x: 400, y: 100 };
+
+  // Reset any other game variables or states as needed
+
+  // Start or restart the game timer
+  timer = 60;
+  clearTimeout(timerId);
+  decreaseTimer();
+
+  // Hide the display text if it was shown
+  document.querySelector('#displayText').style.display = 'none';
+}
+
 function animate() {
   window.requestAnimationFrame(animate)
   c.fillStyle = 'black'
@@ -268,6 +288,9 @@ function animate() {
 }
 
 animate()
+
+document.getElementById('restartButton').addEventListener('click', restartGame);
+
 
 window.addEventListener('keydown', (event) => {
   if (!player.dead) {
