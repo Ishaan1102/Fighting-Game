@@ -167,7 +167,7 @@ const keys = {
 decreaseTimer()
 
 function restartGame() {
-  // Reset player and enemy health
+  // Reset player and enemy health to their maximum value
   player.health = 100;
   enemy.health = 100;
 
@@ -184,7 +184,16 @@ function restartGame() {
 
   // Hide the display text if it was shown
   document.querySelector('#displayText').style.display = 'none';
+
+  // Reset player and enemy states to alive
+  player.dead = false;
+  enemy.dead = false;
+
+  // Reset player and enemy sprites to idle
+  player.switchSprite('idle');
+  enemy.switchSprite('idle');
 }
+
 
 function animate() {
   window.requestAnimationFrame(animate)
